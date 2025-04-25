@@ -9,8 +9,6 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
   const product: Product | null = await getProduct(parseInt(id));
 
-  console.log("PRODUCT", product);
-
   if (!product) {
     notFound();
   }

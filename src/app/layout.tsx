@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 
 import Navbar from "../components/navbar";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <Navbar />
         <main>{children}</main>
+        <Toaster />
       </body>
     </html>
   );

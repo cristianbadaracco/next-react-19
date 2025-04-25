@@ -1,10 +1,12 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 import {
   createProduct as createProductDb,
   updateProduct as updateProductDb,
+  deleteProduct as deleteProductDb,
 } from "@/prisma-db";
 
 import type { Error, FormError } from "@/types";
@@ -78,4 +80,9 @@ export const updateProduct = async (
     description as string
   );
   redirect("/products-db");
+};
+
+export const deleteProduct = async (id: number) => {
+  await deleteProductDb(id);
+  revalidatePath("/products-db");
 };
