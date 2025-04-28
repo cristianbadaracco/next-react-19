@@ -16,7 +16,7 @@ const getUser = async (id: number) => {
 };
 
 const UserPage = async ({ params }: UserPageProps) => {
-  const { id } = params;
+  const { id } = await params;
   const user = await getUser(Number(id));
 
   if (!user.id) {

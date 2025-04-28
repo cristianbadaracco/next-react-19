@@ -1,6 +1,10 @@
-const Post = async ({ params }: { params: { slug: string } }) => {
+interface PostProps {
+  slug: string;
+}
+
+const Post = async ({ params }: { params: PostProps }) => {
   const { slug } = params;
-  const postId = slug; // Get the first part of the slug as the post ID
+  const postId = slug;
 
   const data = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}`
