@@ -14,3 +14,10 @@ export interface Error {
   price?: string;
   description?: string;
 }
+
+export interface Post {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}

@@ -4,12 +4,9 @@ import { Suspense } from "react";
 import Author from "./_components/author";
 import UsersSection from "./_components/users-section";
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-}
+import { fetchPosts } from "@/actions/posts";
+
+import { Post } from "@/types";
 
 const Blog = async ({
   params,
@@ -17,11 +14,7 @@ const Blog = async ({
   params: Promise<{ slug: Array<string> }>;
 }) => {
   const { slug = [] } = await params;
-
-  const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const posts = await data.json();
-
-  const filteredPosts = posts.filter((post: Post) => post.id % 20 === 0);
+  const filteredPosts = await fetchPosts();
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">

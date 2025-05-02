@@ -5,15 +5,19 @@ import CommentsList from "./_components/comment-list";
 import AlbumsList from "./_components/albums-list";
 
 interface UserPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const getUser = async (id: number) => {
   const user = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
   return user.json();
 };
+
+export async function generateStaticParams() {
+  return [{ id: "2" }, { id: "4" }, { id: "6" }, { id: "8" }];
+}
 
 const UserPage = async ({ params }: UserPageProps) => {
   const { id } = await params;
