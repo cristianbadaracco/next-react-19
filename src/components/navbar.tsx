@@ -1,20 +1,26 @@
-import Link from "next/link";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
-const Navbar = () => {
+import NavbarLinks from "./navbar-links";
+
+const Navbar = async () => {
   return (
-    <nav className="flex flex-row gap-4">
-      <Link href="/" className="px-3 py-2 border-r">
-        Home
-      </Link>
-      <Link href="/folder1" className="px-3 py-2 border-r">
-        Folder 1
-      </Link>
-      <Link href="/folder1/folder2" className="px-3 py-2 border-r">
-        Folder 2
-      </Link>
-      <Link href="/blog" className="px-3 py-2 border-r">
-        Blog
-      </Link>
+    <nav className="flex justify-between items-center w-full px-4 py-2">
+      <NavbarLinks />
+      <div className="flex items-center gap-4">
+        <SignedOut>
+          <SignInButton mode="modal" />
+          <SignUpButton mode="modal" />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </div>
     </nav>
   );
 };

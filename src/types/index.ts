@@ -21,3 +21,18 @@ export interface Post {
   body: string;
   userId: number;
 }
+
+export interface FormRoleError {
+  errors?: Role;
+}
+
+export interface Role {
+  id: number;
+  role: string;
+}
+
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+}
